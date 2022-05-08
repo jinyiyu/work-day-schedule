@@ -36,14 +36,24 @@
   </head>
 
   <body>
-    <header class="jumbotron">
+    <header class="jumbotron" id="header">
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
-    <div class="container">
-      <!-- Timeblocks go here -->
+    <!-- render each Timeblocks -->
+    <section class="container" id="container">
+      <!-- <span class="timeBlock">9 am</span>
+    <div class="form-floating textBlock">
+      <textarea
+        class="form-control"
+        placeholder="Leave a comment here"
+        id="floatingTextarea"
+      ></textarea>
+      <label for="floatingTextarea">Comments</label>
     </div>
+    <button type="button" class="btn btn-outline-success btnBlock">Save</button> -->
+    </section>
 
     <!-- JS for bootstrap -->
     <script
@@ -62,8 +72,8 @@
 
     <!-- JS for moment.js -->
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"
-      integrity="sha512-x/vqovXY/Q4b+rNjgiheBsA/vbWA3IVvsS8lkQSX1gQ4ggSJx38oI2vREZXpTzhAv6tNUaX81E7QBBzkpDQayA=="
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"
+      integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
