@@ -20,34 +20,43 @@ const renderDay = () => {
   currentDay.text(today);
 };
 
+const getText = () => {};
+
 const handleSubmit = () => {
+  console.log("hi");
   // check if click from button
   // check which button the click came from
   //   get the timenumber from the click (data-key)
-  // get the text from block - (data-textarea-key)
+  // get the text from block - function(getText) (data-textarea-key)
+
   // validate the text - if not render alarm
   // update LS
 };
 
 const renderTimeBlocks = () => {
-  const renderEachBlock = () => {
-    const block = `      <span class="timeBlock">${lable}</span>
+  // for each iteration, create a time block
+  const renderEachBlock = (timeArray) => {
+    const block = `<div class="timeBlockItem"><span class="timeBlock">${
+      timeArray.lable
+    }</span>
   <div class="form-floating textBlock">
     <textarea
       class="form-control"
       placeholder="Leave a comment here"
       id="floatingTextarea"
-      data-textarea-key=${time}
-    ></textarea>
+      data-textarea-key="${timeArray.time}"
+    >${getText()}</textarea>
     <label for="floatingTextarea">Comments</label>
   </div>
-  <button type="button" class="btn btn-outline-success btnBlock" data-key= ${time}>
+  <button type="button" class="btn btn-outline-success btnBlock" data-key="${
+    timeArray.time
+  }">
     Save
-  </button>`;
+  </button></div>`;
     blocksSection.append(block);
   };
 
-  timeArray.lable.forEach(renderEachBlock);
+  timeArray.forEach(renderEachBlock);
 
   blocksSection.click(handleSubmit);
 };
