@@ -61,9 +61,9 @@ const renderTimeBlocks = () => {
   blocksSection.click(handleSubmit);
 };
 
-const onload = () => {
+const onReady = () => {
   renderDay();
   renderTimeBlocks();
 };
 
-$(document).ready(onload);
+$(document).ready(onReady);
