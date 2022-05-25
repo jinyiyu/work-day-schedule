@@ -20,42 +20,63 @@ const renderDay = () => {
   currentDay.text(today);
 };
 
-const getText = () => {};
+const getText = () => {
+  //get user text from the LS!
+};
 
-const handleSubmit = () => {
-  console.log("hi");
-  // check if click from button
-  // check which button the click came from
-  //   get the timenumber from the click (data-key)
-  // get the text from block - function(getText) (data-textarea-key)
+const handleSubmit = (event) => {
+  event.stopPropagation();
+  const checkWhichBtn = $(event.target).attr("data-purpose");
+  console.log(checkWhichBtn);
+  const getTimeKey = $(event.target).attr("data-key");
+  console.log(getTimeKey);
 
-  // validate the text - if not render alarm
-  // update LS
+  if (checkWhichBtn) {
+    if (checkWhichBtn === "Save") {
+      //get the text - function(getText) (data-textarea-key)
+      // validate the text - if not render alarm
+      // update LS
+    } else if (checkWhichBtn === "Delete") {
+      //if from delete btn - get the datanumber - get the text from ls - remove - if [] reload
+    }
+  } else if (checkWhichBtn === "clearAll") {
+    //if from clear all btn - remove all text
+  }
 };
 
 const renderTimeBlocks = () => {
   // for each iteration, create a time block
-  const renderEachBlock = (timeArray) => {
+  const clearBtn = `<div">
+  <button type="button" class="btn btn-outline-danger btnClear" data-purpose="clearAll">
+    Clear All
+  </button>
+</div>`;
+  blocksSection.append(clearBtn);
+  const renderEachBlock = (each) => {
     const block = `<div class="timeBlockItem"><span class="timeBlock">${
-      timeArray.lable
+      each.lable
     }</span>
   <div class="form-floating textBlock">
     <textarea
       class="form-control"
       placeholder="Leave a comment here"
       id="floatingTextarea"
-      data-textarea-key="${timeArray.time}"
+      data-textarea-key="${each.time}"
     >${getText()}</textarea>
     <label for="floatingTextarea">Comments</label>
   </div>
-  <button type="button" class="btn btn-outline-success btnBlock" data-key="${
-    timeArray.time
-  }">
+  <button type="button" class="btn btn-outline-success btnSave" data-key="${
+    each.time
+  }" data-purpose="save">
     Save
+  </button>
+  <button type="button" class="btn btn-outline-danger btnDelete" data-key="${
+    each.time
+  }" data-purpose="delete">
+    Delete
   </button></div>`;
     blocksSection.append(block);
   };
-
   timeArray.forEach(renderEachBlock);
 
   blocksSection.click(handleSubmit);

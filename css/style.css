@@ -70,19 +70,6 @@ textarea {
   color: white;
 }
 
-.saveBtn {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06aed5;
-  color: white;
-}
-
-.saveBtn i:hover {
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
-}
-
 /* my css style for each block */
 .container {
   margin-top: 1rem;
@@ -91,7 +78,7 @@ textarea {
   justify-content: center;
 }
 .timeBlockItem {
-  margin-top: 1rem;
+  margin: 0.5rem;
   display: flex;
   flex-direction: row;
 }
@@ -99,10 +86,16 @@ textarea {
   width: 15%;
   text-transform: uppercase;
   text-align: center;
+  border-top: 1px dashed #000000;
+  border-bottom: 1px dashed #000000;
 }
 .textBlock {
   width: 70%;
 }
-.btnBlock {
+.btnSave,
+.btnDelete {
+  width: 10%;
+}
+.btnClear {
   width: 20%;
 }
