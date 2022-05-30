@@ -1,7 +1,23 @@
 const currentDay = $("#currentDay");
 const blocksSection = $("#container");
 
-timeArrayIndex = 0;
+const readFromLocalStorage = (key, defaultValue) => {
+  // get from LS using key name
+  const dataFromLS = JSON.parse(localStorage.getItem(key));
+  if (dataFromLS) {
+    return dataFromLS;
+  } else {
+    return defaultValue;
+  }
+};
+
+const writeToLocalStorage = (key, value) => {
+  // convert value to string
+  const stringifiedValue = JSON.stringify(value);
+  // set stringified value to LS for key name
+  localStorage.setItem(key, stringifiedValue);
+};
+
 const timeArray = [
   { lable: "9 am", time: 9 },
   { lable: "10 am", time: 10 },
@@ -15,32 +31,53 @@ const timeArray = [
 ];
 
 const renderDay = () => {
-  //   console.log("hello");
   const today = moment().format("LLL");
   currentDay.text(today);
 };
 
-const getText = () => {
-  //get user text from the LS!
+const handleSaveBtn = (event) => {
+  const time = $(event.target).attr("data-key");
+  const Text = $(`textarea[data-textarea-key='${time}']`).val().trim();
+  writeToLocalStorage(time, Text);
+};
+
+const handleDeleteBtn = (event) => {
+  event.stopPropagation();
+  const time = $(event.target).attr("data-key");
+  localStorage.removeItem(time);
+  blocksSection.empty();
+  renderTimeBlocks();
+};
+const handleClearBtn = (event) => {
+  event.stopPropagation();
+  localStorage.clear();
+  blocksSection.empty();
+  renderTimeBlocks();
 };
 
 const handleSubmit = (event) => {
   event.stopPropagation();
   const checkWhichBtn = $(event.target).attr("data-purpose");
-  console.log(checkWhichBtn);
-  const getTimeKey = $(event.target).attr("data-key");
-  console.log(getTimeKey);
 
   if (checkWhichBtn) {
-    if (checkWhichBtn === "Save") {
-      //get the text - function(getText) (data-textarea-key)
-      // validate the text - if not render alarm
-      // update LS
-    } else if (checkWhichBtn === "Delete") {
-      //if from delete btn - get the datanumber - get the text from ls - remove - if [] reload
+    if (checkWhichBtn === "save") {
+      handleSaveBtn(event);
+    } else if (checkWhichBtn === "delete") {
+      handleDeleteBtn(event);
+    } else if (checkWhichBtn === "clearAll") {
+      handleClearBtn(event);
     }
-  } else if (checkWhichBtn === "clearAll") {
-    //if from clear all btn - remove all text
+  }
+};
+
+const getClassName = (CurrentTime) => {
+  const currentTime = moment().hour();
+  if (CurrentTime === currentTime) {
+    return "present";
+  } else if (CurrentTime > currentTime) {
+    return "future";
+  } else if (CurrentTime < currentTime) {
+    return "past";
   }
 };
 
@@ -58,11 +95,11 @@ const renderTimeBlocks = () => {
     }</span>
   <div class="form-floating textBlock">
     <textarea
-      class="form-control"
+      class="form-control ${getClassName(each.time)}"
       placeholder="Leave a comment here"
       id="floatingTextarea"
       data-textarea-key="${each.time}"
-    >${getText()}</textarea>
+    >${readFromLocalStorage(each.time, "")}</textarea>
     <label for="floatingTextarea">Comments</label>
   </div>
   <button type="button" class="btn btn-outline-success btnSave" data-key="${
