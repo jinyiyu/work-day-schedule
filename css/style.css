@@ -1,0 +1,107 @@
+:root {
+  --manatee: #8e9aafff;
+  --languid-lavender: #cbc0d3ff;
+  --pale-pink: #efd3d7ff;
+  --pale-purple-pantone: #feeafaff;
+  --lavender-web: #dee2ffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* default css from hw challenge */
+textarea {
+  background: transparent;
+  border: none;
+  resize: none;
+  color: #000000;
+  border-left: 1px solid black;
+  padding: 10px;
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border-bottom: 10px solid black;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+.time-block {
+  text-align: center;
+  border-radius: 15px;
+}
+
+.row {
+  white-space: pre-wrap;
+  height: 80px;
+  border-top: 1px solid white;
+}
+
+.hour {
+  background-color: #ffffff;
+  color: #000000;
+  border-top: 1px dashed #000000;
+}
+
+.past {
+  background-color: #d3d3d3;
+  color: rgb(211, 97, 97);
+  font-size: large;
+  font-weight: 700;
+}
+
+.present {
+  background-color: #ff6961;
+  color: rgb(57, 53, 53);
+  font-size: large;
+  font-weight: 700;
+}
+
+.future {
+  background-color: #77dd77;
+  color: rgb(58, 53, 53);
+  font-size: large;
+  font-weight: 700;
+}
+
+/* my css style for each block */
+.container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.timeBlockItem {
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+.timeBlock {
+  width: 15%;
+  text-transform: uppercase;
+  text-align: center;
+  border-top: 1px dashed #000000;
+  border-bottom: 1px dashed #000000;
+}
+.textBlock {
+  width: 70%;
+}
+.btnSave,
+.btnDelete {
+  width: 10%;
+}
+.btnClear {
+  width: 20%;
+}
